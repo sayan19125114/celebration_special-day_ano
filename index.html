@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Chaos Queen 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:wght@300;400;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config={theme:{extend:{fontFamily:{hand:['Caveat','cursive'],body:['Nunito','sans-serif'],display:['Dancing Script','cursive']},colors:{brand:{purple:'#A78BFA',blue:'#60A5FA',amber:'#FBBF24',pink:'#F472B6',dark:'#0C0816',card:'#16102A',border:'#2D1F4E'}}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:#0C0816;color:#F1F0F5;overflow-x:hidden;cursor:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0C0816}
+::-webkit-scrollbar-thumb{background:#2D1F4E;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#A78BFA}
+
+/* Loader */
+#loader{position:fixed;inset:0;background:#0C0816;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s}
+#loader-bar{width:0%;height:100%;background:linear-gradient(90deg,#A78BFA,#FBBF24);transition:width 0.4s ease}
+
+/* Aurora + Particles */
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.aurora-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);background-size:200% 200%;animation:auroraMove 20s ease infinite;opacity:0.6}
+.aurora-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 100%, hsla(280,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 100%, hsla(220,49%,30%,1) 0, transparent 50%);background-size:200% 200%;animation:auroraMove 25s ease infinite reverse;opacity:0.7}
+@keyframes auroraMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* Custom Cursor */
+.custom-cursor{width:20px;height:20px;border:2px solid #FBBF24;border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transition:transform 0.15s ease, opacity 0.15s ease, border-color 0.3s;mix-blend-mode:difference}
+.custom-cursor.hovered{transform:scale(2.5);background:rgba(251, 191, 36, 0.1);border-color:#A78BFA}
+.heart-trail{position:fixed;pointer-events:none;color:#F472B6;font-size:16px;animation:trailFade 1s forwards;z-index:99998}
+@keyframes trailFade{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-40px) scale(0);opacity:0}}
+@media (hover: none){.custom-cursor{display:none}body{cursor:auto}}
+
+.glow-text{text-shadow:0 0 40px rgba(167,139,250,0.4),0 0 80px rgba(96,165,250,0.2)}
+.glow-amber{text-shadow:0 0 30px rgba(251,191,36,0.5)}
+.glow-blue{text-shadow:0 0 30px rgba(96,165,250,0.5)}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes float-slow{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(5deg)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(167,139,250,0.3)}50%{box-shadow:0 0 40px rgba(167,139,250,0.6)}}
+@keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes slide-up{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes confetti-fall{0%{transform:translateY(-10vh) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes candle-out{0%{opacity:1;transform:scaleY(1)}50%{opacity:0.5;transform:scaleY(1.5)}100%{opacity:0;transform:scaleY(0)}}
+@keyframes smoke{0%{opacity:0.6;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-30px) scale(2)}}
+@keyframes bounce-in{0%{transform:scale(0);opacity:0}50%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+@keyframes waveform{0%,100%{height:8px}50%{height:var(--h,24px)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes scroll-hint{0%,100%{transform:translateY(0);opacity:0.5}50%{transform:translateY(10px);opacity:1}}
+
+.animate-float{animation:float 3s ease-in-out infinite}
+.animate-float-slow{animation:float-slow 5s ease-in-out infinite}
+.animate-pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
+.animate-spin-slow{animation:spin-slow 20s linear infinite}
+.animate-wiggle{animation:wiggle 0.5s ease-in-out}
+.animate-bounce-in{animation:bounce-in 0.5s cubic-bezier(0.16,1,0.3,1)}
+
+.gradient-text{background:linear-gradient(135deg,#A78BFA,#60A5FA,#FBBF24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.shimmer-text{background:linear-gradient(90deg,#A78BFA 0%,#60A5FA 25%,#FBBF24 50%,#60A5FA 75%,#A78BFA 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+
+/* Glassmorphism Cards */
+.card{background:rgba(22, 16, 42, 0.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;transition:all 0.3s ease;transform-style:preserve-3d}
+.card:hover{border-color:rgba(167,139,250,0.4);box-shadow:0 0 30px rgba(167,139,250,0.15);transform:translateY(-4px)}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:linear-gradient(135deg, rgba(167,139,250,0.4), rgba(96,165,250,0.1), rgba(251,191,36,0.2));-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:0;transition:opacity 0.3s ease}
+.card:hover::before{opacity:1}
+
+.timeline-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,#A78BFA,#60A5FA,#FBBF24,transparent);transform:translateX(-50%)}
+@media(max-width:768px){.timeline-line{left:20px}}
+
+/* Polaroid Scatter-pile Styling */
+.polaroid{background:#F1F0F5;padding:12px 12px 44px 12px;border-radius:4px;box-shadow:0 4px 25px rgba(0,0,0,0.5);transform:rotate(var(--rot, -2deg));transition:transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s, z-index 0s !important;cursor:pointer;position:absolute;width:250px}
+.polaroid:hover{transform:rotate(0deg) scale(1.15) translateY(-15px) !important;z-index:90 !important;box-shadow:0 30px 60px rgba(0,0,0,0.7)}
+.polaroid img{width:100%;height:240px;object-fit:cover;border-radius:2px;filter:sepia(15%) contrast(105%);transition:filter 0.3s}
+.polaroid:hover img{filter:sepia(0%) contrast(100%)}
+.polaroid-caption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:'Caveat',cursive;color:#1A1128;font-size:1.4rem;line-height:1.1}
+
+/* Decorative Washi Tape Effect */
+.polaroid::after {content: '';position: absolute;top: -12px;left: 50%;transform: translateX(-50%) rotate(-1deg);width: 85px;height: 24px;background: rgba(167, 139, 250, 0.22);backdrop-filter: blur(1.5px);-webkit-backdrop-filter: blur(1.5px);border-left: 3px dashed rgba(255,255,255,0.15);border-right: 3px dashed rgba(255,255,255,0.15);box-shadow: 0 2px 5px rgba(0,0,0,0.08);pointer-events: none;transition: opacity 0.3s ease;}
+.polaroid:hover::after{opacity:0.2}
+
+/* Secret Decoder */
+.decode-text{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.5rem;color:#2D1F4E;background:rgba(167,139,250,0.08);padding:0.6rem 1.2rem;border-radius:0.5rem;border:1px solid #2D1F4E;cursor:help;transition:all 0.3s ease;min-width:90px;display:inline-block;text-align:center}
+.decode-text:hover{color:#FBBF24;border-color:#FBBF24;background:rgba(251,191,36,0.1);transform:translateY(-2px)}
+.decode-text.revealed{color:#F1F0F5;border-color:#A78BFA;background:rgba(167,139,250,0.2)}
+
+.envelope-wrapper{perspective:800px;cursor:pointer}
+.envelope{position:relative;width:320px;height:220px;margin:0 auto}
+.envelope-body{position:absolute;bottom:0;width:320px;height:180px;background:linear-gradient(145deg,#2D1F4E,#1A1128);border-radius:0 0 8px 8px;border:2px solid #3D2F5E;overflow:hidden;z-index:2}
+.envelope-flap{position:absolute;top:0;width:0;height:0;border-left:160px solid transparent;border-right:160px solid transparent;border-top:140px solid #2D1F4E;z-index:3;transform-origin:top center;transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
+.envelope.opened .envelope-flap{transform:rotateX(180deg);z-index:1}
+.envelope-letter{position:absolute;top:20px;left:20px;right:20px;bottom:20px;background:#F1F0F5;color:#1A1128;padding:1.5rem;border-radius:4px;transform:translateY(0);transition:transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s;z-index:1;font-family:'Caveat',cursive;font-size:1.1rem;line-height:1.6;overflow-y:auto;max-height:280px}
+.envelope.opened .envelope-letter{transform:translateY(-200px)}
+
+.cake-container{position:relative;width:200px;height:240px;margin:0 auto}
+.cake-layer{position:absolute;border-radius:12px;left:50%;transform:translateX(-50%)}
+.candle {position: absolute;width: 10px;height: 38px;border-radius: 4px 4px 2px 2px;box-shadow: inset -2px 0 5px rgba(0,0,0,0.15),inset 2px 0 5px rgba(255,255,255,0.4),0 2px 3px rgba(0,0,0,0.2);z-index: 10;}
+#candle-1 { background: repeating-linear-gradient(-45deg, #fff, #fff 4px, #F472B6 4px, #F472B6 8px); } 
+#candle-2 { background: repeating-linear-gradient(-45deg, #fff, #fff 4px, #60A5FA 4px, #60A5FA 8px); } 
+#candle-3 { background: repeating-linear-gradient(-45deg, #fff, #fff 4px, #FBBF24 4px, #FBBF24 8px); } 
+#candle-4 { background: repeating-linear-gradient(-45deg, #fff, #fff 4px, #A78BFA 4px, #A78BFA 8px); } 
+.candle::before {content: '';position: absolute;top: -6px;left: 50%;transform: translateX(-50%);width: 2px;height: 6px;background: #2a1610; border-radius: 2px;z-index: 1;}
+.candle::after {content: '';position: absolute;top: 0;left: 0;width: 100%;height: 4px;background: #fff;border-radius: 50% 50% 0 0;box-shadow: -2px 4px 0 -1px #fff,2px 6px 0 -2px #fff;}
+.flame {position: absolute;top: -24px;left: 50%;transform: translateX(-50%);width: 12px;height: 20px;background: radial-gradient(ellipse at bottom, #e0f7fa 10%, #FEF08A 30%, #F59E0B 70%, transparent 100%);border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;box-shadow: 0 -2px 10px rgba(251, 191, 36, 0.8),0 0 20px rgba(249, 115, 22, 0.6),0 0 40px rgba(249, 115, 22, 0.4);animation: flicker 0.12s ease-in-out infinite alternate;transform-origin: bottom center;z-index: 2;transition: transform 0.1s ease;}
+.flame::after {content: '';position: absolute;bottom: 2px;left: 50%;transform: translateX(-50%);width: 6px;height: 10px;background: #fff;border-radius: 50%;filter: blur(1px);}
+.flame.out {animation: candle-out 0.3s ease-out forwards;}
+@keyframes flicker {0% { transform: translateX(-50%) scale(1) skewX(1deg); opacity: 0.9; }100% { transform: translateX(-50%) scale(1.05) skewX(-2deg); opacity: 1; box-shadow: 0 -2px 15px rgba(251, 191, 36, 1), 0 0 25px rgba(249, 115, 22, 0.8); }}
+
+.smoke-puff{position:absolute;width:8px;height:8px;background:rgba(200,200,200,0.4);border-radius:50%;animation:smoke 1s ease-out forwards;pointer-events:none}
+
+.waveform-bar{width:3px;background:#A78BFA;border-radius:2px;animation:waveform 0.6s ease-in-out infinite;animation-play-state:paused;height:8px}
+.waveform-bar.playing{animation-play-state:running}
+
+.voucher-card{background:linear-gradient(145deg,#1A1128,#2D1F4E);border:2px dashed #3D2F5E;border-radius:1rem;padding:1.5rem;position:relative;overflow:hidden;transition:all 0.3s ease;cursor:pointer}
+.voucher-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(167,139,250,0.05),transparent,rgba(96,165,250,0.05),transparent);animation:spin-slow 10s linear infinite}
+.voucher-card:hover{border-color:#A78BFA;transform:scale(1.03)}
+.voucher-card.redeemed{border-color:#FBBF24;background:linear-gradient(145deg,#1A1128,#2D1F4E)}
+.voucher-card.redeemed::after{content:'REDEEMED';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-20deg);font-size:2rem;font-weight:900;color:rgba(251,191,36,0.3);letter-spacing:0.1em}
+
+.quiz-option{background:rgba(22,16,42,0.6);border:2px solid #2D1F4E;border-radius:0.75rem;padding:1rem 1.25rem;cursor:pointer;transition:all 0.2s ease;text-align:left;width:100%}
+.quiz-option:hover{border-color:#A78BFA;background:rgba(167,139,250,0.1)}
+.quiz-option.selected{border-color:#A78BFA;background:rgba(167,139,250,0.1)}
+.quiz-option.correct{border-color:#22C55E;background:rgba(34,197,94,0.1)}
+.quiz-option.wrong{border-color:#EF4444;background:rgba(239,68,68,0.1)}
+
+.progress-bar{height:6px;background:#2D1F4E;border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;border-radius:3px;transition:width 1.5s cubic-bezier(0.16,1,0.3,1);width:0}
+
+.confetti-piece{position:fixed;width:10px;height:10px;z-index:9999;pointer-events:none;animation:confetti-fall linear forwards}
+
+.nav-dot{width:10px;height:10px;border-radius:50%;background:#2D1F4E;transition:all 0.3s ease;cursor:pointer}
+.nav-dot.active{background:#A78BFA;box-shadow:0 0 10px rgba(167,139,250,0.5);transform:scale(1.3)}
+
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(45,31,78,0.95);border:1px solid #A78BFA;color:#F1F0F5;padding:0.75rem 1.5rem;border-radius:0.75rem;font-size:0.9rem;z-index:10000;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;backdrop-filter:blur(8px)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+.music-visualizer{display:flex;align-items:end;gap:2px;height:30px}
+.music-bar{width:4px;background:linear-gradient(to top,#A78BFA,#60A5FA);border-radius:2px;transition:height 0.15s ease}
+
+/* Premium button shimmer */
+button{position:relative;overflow:hidden}
+button::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(to bottom right,rgba(255,255,255,0) 0%,rgba(255,255,255,0.12) 50%,rgba(255,255,255,0) 100%);transform:rotate(45deg) translateY(-100%);transition:transform 0.6s}
+button:hover::after{transform:rotate(45deg) translateY(100%)}
+
+.font-display{font-family:'Dancing Script',cursive}
+
+.tabular-nums {font-variant-numeric: tabular-nums;letter-spacing: 1px;}
+@keyframes pop-lock {0% { transform: scale(1); filter: brightness(1); }50% { transform: scale(1.3); filter: brightness(1.5); }100% { transform: scale(1); filter: brightness(1); }}
+.pop-effect {animation: pop-lock 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;}
+
+@media (max-width: 850px) {#polaroid-pile {display: grid;grid-template-columns: repeat(2, 1fr);gap: 3rem 1rem;justify-items: center;min-height: auto !important;padding: 2rem 0;}
+.polaroid {position: relative !important;left: auto !important;top: auto !important;width: 90% !important;max-width: 240px;}
+.polaroid:hover {transform: rotate(0deg) scale(1.05) translateY(-10px) !important;}}
+@media (max-width: 640px) {#polaroid-pile {grid-template-columns: 1fr;gap: 3.5rem;}.polaroid {width: 75% !important;max-width: 300px;}}
+</style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="font-hand text-4xl text-brand-amber mb-6">Preparing chaos... ⚡</div>
+        <div style="width:220px;height:4px;background:#2D1F4E;border-radius:2px;overflow:hidden">
+            <div id="loader-bar"></div>
+        </div>
+    </div>
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <div class="aurora-bg"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <nav id="side-nav"
+        class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 opacity-0 transition-opacity duration-500"
+        style="pointer-events:none">
+    </nav>
+
+    <button id="scroll-top" onclick="window.scrollTo({top:0})"
+        class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-brand-card border border-brand-border flex items-center justify-center opacity-0 translate-y-4 transition-all duration-300 hover:border-border-brand-purple hover:shadow-[0_0_20px_rgba(167,139,250,0.3)]"
+        style="pointer-events:none">
+        <i data-lucide="chevron-up" class="w-5 h-5"></i>
+    </button>
+
+    <div id="toast" class="toast"></div>
+
+    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 text-center z-10">
+        <div class="relative">
+            <div class="text-6xl md:text-8xl mb-4 animate-float">✨</div>
+            <h1 class="font-display text-6xl md:text-9xl font-bold shimmer-text leading-none mb-6">
+                <span id="hero-text">Happy Birthday</span>
+            </h1>
+            <p class="font-hand text-3xl md:text-5xl text-brand-amber glow-amber mb-2">to the chaos queen who makes life
+            </p>
+            <p class="font-hand text-3xl md:text-5xl text-brand-purple glow-text mb-12">feel like a movie montage</p>
+        </div>
+
+        <div id="countdown" class="grid grid-cols-3 md:flex md:flex-wrap justify-center gap-3 md:gap-4 mb-16">
+            <div class="card px-2 py-3 md:px-6 md:py-4 text-center min-w-[70px]">
+                <div id="cd-years" class="text-2xl md:text-4xl font-bold font-hand text-brand-pink glow-text">00</div>
+                <div class="text-[10px] md:text-xs text-brand-pink/60 uppercase tracking-widest mt-1">Years</div>
+            </div>
+            <div class="card px-2 py-3 md:px-6 md:py-4 text-center min-w-[70px]">
+                <div id="cd-months" class="text-2xl md:text-4xl font-bold font-hand text-brand-purple glow-text">00</div>
+                <div class="text-[10px] md:text-xs text-brand-purple/60 uppercase tracking-widest mt-1">Months</div>
+            </div>
+            <div class="card px-2 py-3 md:px-6 md:py-4 text-center min-w-[70px]">
+                <div id="cd-days" class="text-2xl md:text-4xl font-bold font-hand text-brand-blue glow-blue">00</div>
+                <div class="text-[10px] md:text-xs text-brand-blue/60 uppercase tracking-widest mt-1">Days</div>
+            </div>
+            <div class="card px-2 py-3 md:px-6 md:py-4 text-center min-w-[70px]">
+                <div id="cd-hours" class="text-2xl md:text-4xl font-bold font-hand text-brand-amber glow-amber">00</div>
+                <div class="text-[10px] md:text-xs text-brand-amber/60 uppercase tracking-widest mt-1">Hours</div>
+            </div>
+            <div class="card px-2 py-3 md:px-6 md:py-4 text-center min-w-[70px]">
+                <div id="cd-mins" class="text-2xl md:text-4xl font-bold font-hand text-brand-purple glow-text">00</div>
+                <div class="text-[10px] md:text-xs text-brand-purple/60 uppercase tracking-widest mt-1">Minutes</div>
+            </div>
+            <div class="card px-2 py-3 md:px-6 md:py-4 text-center min-w-[70px]">
+                <div id="cd-secs" class="text-2xl md:text-4xl font-bold font-hand text-brand-blue glow-blue">00</div>
+                <div class="text-[10px] md:text-xs text-brand-blue/60 uppercase tracking-widest mt-1">Seconds</div>
+            </div>
+        </div>
+
+        <div class="animate-bounce" style="animation:scroll-hint 2s ease-in-out infinite">
+            <p class="text-sm text-brand-purple/50 mb-2">scroll down, there's a lot</p>
+            <i data-lucide="chevrons-down" class="w-6 h-6 mx-auto text-brand-purple/50"></i>
+        </div>
+    </section>
+
+    <section id="timeline" class="relative z-10 py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                <span class="gradient-text">Memory Lane</span> 🛤️
+            </h2>
+            <p class="text-center text-brand-purple/60 mb-16 reveal reveal-delay-1 font-hand text-xl">A completely
+                unbiased history of our chaos</p>
+
+            <div class="relative">
+                <div class="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-brand-purple to-transparent transform md:-translate-x-1/2 opacity-50 md:opacity-100"></div>
+
+                <div class="space-y-12 md:space-y-16">
+                    <div class="reveal relative flex items-start md:items-center md:justify-start">
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                            <span class="font-hand text-2xl text-brand-amber">2011</span>
+                            <h3 class="text-xl font-bold mt-1">The First "meetup" 👋</h3>
+                            <p class="text-brand-purple/60 mt-2">but say nothing</p>
+                        </div>
+                        <div class="absolute left-[18px] md:left-1/2 transform -translate-x-1/2 mt-1 md:mt-0 w-4 h-4 rounded-full bg-brand-amber border-4 border-brand-dark z-10"></div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </div>
+
+                    <!-- 2019 (Right on desktop & mobile) -->
+                    <div class="reveal reveal-delay-1 relative flex items-start md:items-center md:justify-end">
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="absolute left-[18px] md:left-1/2 transform -translate-x-1/2 mt-1 md:mt-0 w-4 h-4 rounded-full bg-brand-purple border-4 border-brand-dark z-10"></div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pl-12 w-full">
+                            <span class="font-hand text-2xl text-brand-purple">2019</span>
+                            <h3 class="text-xl font-bold mt-1">The second meetup</h3>
+                            <p class="text-brand-purple/60 mt-2">In english batch but we didn't say much.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2025 Blue -->
+                    <div class="reveal reveal-delay-2 relative flex items-start md:items-center md:justify-start">
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                            <span class="font-hand text-2xl text-brand-blue">2025</span>
+                            <h3 class="text-xl font-bold mt-1">The 8.05 am inciedent 🌙</h3>
+                            <p class="text-brand-purple/60 mt-2">You were sitting and shivering at Naihati station.</p>
+                        </div>
+                        <div class="absolute left-[18px] md:left-1/2 transform -translate-x-1/2 mt-1 md:mt-0 w-4 h-4 rounded-full bg-brand-blue border-4 border-brand-dark z-10"></div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </div>
+
+                    <!-- 2025 Pink -->
+                    <div class="reveal reveal-delay-3 relative flex items-start md:items-center md:justify-end">
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="absolute left-[18px] md:left-1/2 transform -translate-x-1/2 mt-1 md:mt-0 w-4 h-4 rounded-full bg-brand-pink border-4 border-brand-dark z-10"></div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pl-12 w-full">
+                            <span class="font-hand text-2xl text-brand-pink">2025</span>
+                            <h3 class="text-xl font-bold mt-1">Officially Partners 🤝</h3>
+                            <p class="text-brand-purple/60 mt-2">It became official. And your training started.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2025 Amber -->
+                    <div class="reveal reveal-delay-4 relative flex items-start md:items-center md:justify-start">
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right w-full">
+                            <span class="font-hand text-2xl text-brand-amber">2026</span>
+                            <h3 class="text-xl font-bold mt-1">First visit place</h3>
+                            <p class="text-brand-purple/60 mt-2">Princepghat. you were really exhausted. but we have done really fun.</p>
+                        </div>
+                        <div class="absolute left-[18px] md:left-1/2 transform -translate-x-1/2 mt-1 md:mt-0 w-4 h-4 rounded-full bg-brand-amber border-4 border-brand-dark z-10"></div>
+                        <div class="hidden md:block md:w-1/2"></div>
+                    </div>
+
+                    <!-- 2025 Green -->
+                    <div class="reveal reveal-delay-5 relative flex items-start md:items-center md:justify-end">
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="absolute left-[18px] md:left-1/2 transform -translate-x-1/2 mt-1 md:mt-0 w-4 h-4 rounded-full bg-green-400 border-4 border-brand-dark z-10"></div>
+                        <div class="ml-12 md:ml-0 md:w-1/2 md:pl-12 w-full">
+                            <span class="font-hand text-2xl text-green-400">2026</span>
+                            <h3 class="text-xl font-bold mt-1">Still Going Strong 🔥</h3>
+                            <p class="text-brand-purple/60 mt-2">Another year of chaos, laughs, and questionable decisions. Wouldn't change a thing.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="iconic" class="relative z-10 py-24 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                <span class="gradient-text">Why You're Iconic</span> 👑
+            </h2>
+            <p class="text-center text-brand-purple/60 mb-16 reveal reveal-delay-1 font-hand text-xl">Certified traits,
+                peer-reviewed by yours truly</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6 reveal">
+                    <div class="text-4xl mb-4">🤔</div>
+                    <h3 class="text-lg font-bold mb-2">Professional Overthinker</h3>
+                    <p class="text-brand-purple/60 text-sm">You can turn a simple "ok" into a 45-minute analysis of what
+                        it means. It's a gift.</p>
+                </div>
+                <div class="card p-6 reveal reveal-delay-1">
+                    <div class="text-4xl mb-4">👺</div>
+                    <h3 class="text-lg font-bold mb-2">Gangstar</h3>
+                    <p class="text-brand-purple/60 text-sm">Scarry attitude</p>
+                </div>
+                <div class="card p-6 reveal reveal-delay-2">
+                    <div class="text-4xl mb-4">📦</div>
+                    <h3 class="text-lg font-bold mb-2">Meme Dealer</h3>
+                    <p class="text-brand-purple/60 text-sm">My meme folder is 90% stuff you sent me. You supply, I
+                        hoard.</p>
+                </div>
+                <div class="card p-6 reveal reveal-delay-1">
+                    <div class="text-4xl mb-4">🍵</div>
+                    <h3 class="text-lg font-bold mb-2">Drama Magnet</h3>
+                    <p class="text-brand-purple/60 text-sm">If there's tea, you're already holding the cup. Every.
+                        Single. Time.</p>
+                </div>
+                <div class="card p-6 reveal reveal-delay-2">
+                    <div class="text-4xl mb-4">⏰</div>
+                    <h3 class="text-lg font-bold mb-2">life lessions</h3>
+                    <p class="text-brand-purple/60 text-sm">You're chaotic but always there when it matters.</p>
+                </div>
+                <div class="card p-6 reveal reveal-delay-3">
+                    <div class="text-4xl mb-4">❤️</div>
+                    <h3 class="text-lg font-bold mb-2">Fragile heart</h3>
+                    <p class="text-brand-purple/60 text-sm">You may seem tough on the outside, but your heart is as delicate as a porcelain doll.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="relative z-10 py-24 px-6 select-none overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="font-display text-5xl md:text-7xl mb-4 reveal">
+                <span class="gradient-text">Chaos Archive</span> 📸
+            </h2>
+            <p class="text-center text-brand-purple/60 mb-8 reveal reveal-delay-1 font-hand text-xl">Interactive scatter
+                pile — click any polaroid to reveal the raw context</p>
+
+            <div class="relative w-full min-h-[580px] md:min-h-[640px] mt-12 mx-auto reveal reveal-delay-2"
+                id="polaroid-pile">
+
+                <div class="polaroid" style="left: 5%; top: 4%; --rot: -6deg;" onclick="openLightbox(this)"
+                    data-story="This was right before you spilled iced coffee all over your white shirt and blamed the barista for making it 'too liquidy'.">
+                    <img src="pics/ano1.png" alt="Memory 1">
+                    <div class="polaroid-caption">Stock</div>
+                </div>
+
+                <div class="polaroid" style="left: 38%; top: 10%; --rot: 5deg;" onclick="openLightbox(this)"
+                    data-story="We spent nearly an hour adjusting lighting filters only to end up taking a completely blurry photo. A true aesthetic failure.">
+                    <img src="pics\ano2.jpeg" alt="Memory 2">
+                    <div class="polaroid-caption">We tried to be aesthetic 🎨</div>
+                </div>
+
+                <div class="polaroid" style="left: 68%; top: 2%; --rot: -4deg;" onclick="openLightbox(this)"
+                    data-story="Pure noise. This was when we decided to explain complex astrophysics at 2:30 AM using nothing but dynamic hand gestures.">
+                    <img src="pics\ano3.jpeg" alt="Memory 3">
+                    <div class="polaroid-caption">looking exhausted</div>
+                </div>
+
+                <div class="polaroid" style="left: 12%; top: 46%; --rot: 7deg;" onclick="openLightbox(this)"
+                    data-story="If anyone asks, this never happened. The camera caught you midway through unleashing an ungodly sneeze. Iconic.">
+                    <img src="pics\ano4.png" alt="Memory 4">
+                    <div class="polaroid-caption">Don't ask about this one 🙈</div>
+                </div>
+
+                <div class="polaroid" style="left: 42%; top: 52%; --rot: -8deg;" onclick="openLightbox(this)"
+                    data-story="Don't look at the sweet expressions—five minutes later, we practically started a minor war in the group chat over whether cereal counts as a soup.">
+                    <img src="pics\ano5.jpg" alt="Memory 5">
+                    <div class="polaroid-caption">We looked so innocent lol 😇</div>
+                </div>
+
+                <div class="polaroid" style="left: 66%; top: 48%; --rot: 3deg;" onclick="openLightbox(this)"
+                    data-story="Co-authors of an elite legacy of bad ideas and inside text anomalies. Wouldn't change a single thing.">
+                    <img src="pics\ano6.jpeg" alt="Memory 6">
+                    <div class="polaroid-caption">looking energitic</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards" class="relative z-10 py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                <span class="gradient-text">Annual Awards</span> 🏆
+            </h2>
+            <p class="text-center text-brand-purple/60 mb-16 reveal reveal-delay-1 font-hand text-xl">Completely
+                unbiased and definitely not rigged</p>
+
+            <div class="space-y-6">
+                <div class="card p-6 reveal flex items-center gap-5 border-l-4 border-l-brand-amber">
+                    <div class="text-5xl">🏆</div>
+                    <div>
+                        <h3 class="text-lg font-bold text-brand-amber">Most Likely to Send a Meme at 2am</h3>
+                        <p class="text-brand-purple/60 text-sm mt-1">And then wonder why we're both tired the next day.
+                        </p>
+                    </div>
+                </div>
+                <div class="card p-6 reveal reveal-delay-1 flex items-center gap-5 border-l-4 border-l-brand-purple">
+                    <div class="text-5xl">🏅</div>
+                    <div>
+                        <h3 class="text-lg font-bold text-brand-purple">Best Impression of a Productive Human</h3>
+                        <p class="text-brand-purple/60 text-sm mt-1">You fool literally everyone. For about 10 minutes.
+                        </p>
+                    </div>
+                </div>
+                <div class="card p-6 reveal reveal-delay-2 flex items-center gap-5 border-l-4 border-l-brand-blue">
+                    <div class="text-5xl">🥇</div>
+                    <div>
+                        <h3 class="text-lg font-bold text-brand-blue">Lifetime Achievement in Overthinking</h3>
+                        <p class="text-brand-purple/60 text-sm mt-1">You've overthought so much you've created parallel
+                            universes of anxiety.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cake" class="relative z-10 py-24 px-6">
+        <div class="max-w-lg mx-auto text-center">
+            <h2 class="font-display text-5xl md:text-7xl mb-4 reveal">
+                <span class="gradient-text">Make a Wish</span> 🎂
+            </h2>
+            <p class="text-brand-purple/60 mb-12 reveal reveal-delay-1 font-hand text-xl">Click the cake to blow out the
+                candles</p>
+
+            <div class="reveal reveal-delay-2">
+                <div class="cake-container cursor-pointer" id="cake" onclick="blowCandles()">
+                    <div class="candle" style="left:calc(50% - 30px);top:70px" id="candle-1">
+                        <div class="flame" id="flame-1"></div>
+                    </div>
+                    <div class="candle" style="left:calc(50% - 10px);top:65px" id="candle-2">
+                        <div class="flame" id="flame-2"></div>
+                    </div>
+                    <div class="candle" style="left:calc(50% + 10px);top:65px" id="candle-3">
+                        <div class="flame" id="flame-3"></div>
+                    </div>
+                    <div class="candle" style="left:calc(50% + 30px);top:70px" id="candle-4">
+                        <div class="flame" id="flame-4"></div>
+                    </div>
+
+                    <div class="cake-layer bg-gradient-to-b from-brand-pink to-pink-700"
+                        style="width:180px;height:50px;bottom:90px;border-radius:12px 12px 4px 4px"></div>
+                    <div class="cake-layer bg-gradient-to-b from-purple-400 to-purple-600"
+                        style="width:200px;height:55px;bottom:40px;border-radius:8px"></div>
+                    <div class="cake-layer bg-gradient-to-b from-brand-purple to-purple-800"
+                        style="width:220px;height:60px;bottom:0;border-radius:0 0 16px 16px"></div>
+
+                    <div class="absolute"
+                        style="bottom:140px;left:calc(50% - 90px);width:180px;height:12px;background:linear-gradient(to bottom,rgba(244,114,182,0.8),transparent);border-radius:0 0 50% 50%">
+                    </div>
+                    <div class="absolute"
+                        style="bottom:90px;left:calc(50% - 100px);width:200px;height:14px;background:linear-gradient(to bottom,rgba(167,139,250,0.8),transparent);border-radius:0 0 50% 50%">
+                    </div>
+                </div>
+
+                <p id="cake-message"
+                    class="font-hand text-2xl text-brand-amber mt-8 opacity-0 transition-opacity duration-500 glow-amber">
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="secret" class="relative z-10 py-24 px-6 text-center">
+        <h2 class="font-display text-4xl md:text-5xl mb-10 reveal">Psst... hover to decode 👀</h2>
+        <div class="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto reveal reveal-delay-1">
+            <span class="decode-text" data-text="You're">XJ%#@</span>
+            <span class="decode-text" data-text="literally">9*!&$</span>
+            <span class="decode-text" data-text="the">^@#</span>
+            <span class="decode-text" data-text="best">!!$%</span>
+            <span class="decode-text" data-text="overthinker">@&*#</span>
+            <span class="decode-text" data-text="I know">^$!@</span>
+        </div>
+    </section>
+
+    <section id="letter" class="relative z-10 py-24 px-6">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="font-display text-5xl md:text-7xl mb-4 reveal">
+                <span class="gradient-text">A Letter</span> ✉️
+            </h2>
+            <p class="text-brand-purple/60 mb-12 reveal reveal-delay-1 font-hand text-xl">Click the envelope. Yes, it
+                actually opens.</p>
+
+            <div class="reveal reveal-delay-2">
+                <div class="envelope-wrapper" id="envelope" onclick="openEnvelope()">
+                    <div class="envelope" id="envelope-box">
+                        <div class="envelope-body flex items-center justify-center">
+                            <span class="text-brand-purple/30 text-6xl font-hand">...</span>
+                        </div>
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-letter" id="letter-content">
+                            <p>Dear Birthday Human,</p><br>
+                            <p>Look, I wasn't going to make a whole website for your birthday, but then I remembered
+                                you'd never let me hear the end of it if I didn't do something extra.
+                            </p><br>
+                            <p>You're one of the most annoying, hilarious, and genuinely good humans I know.
+                                We have become very good friends in a very short time. And I have come to understand 
+                                myself better because of you.<strong> So, Thanks for every thing.</strong></p><br>
+                            <p> & And again Thanks for:</p>
+                            <p> ✦ Not judging me (too much)<br>
+                                ✦ Being the chaos to my calm<br>
+                                ✦ Making life way more interesting</p><br>
+                            <p>I don't do the whole emotional speech thing, so I'll keep it short:</p><br>
+                            <p><strong>You matter. A lot. More than I usually admit.</strong></p><br>
+                            <p>Don't be weird about it.</p><br>
+                            <p>Happy Birthday, gangstar. 🎉</p><br>
+                            <p style="text-align:right">— Your antisocial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vouchers" class="relative z-10 py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                <span class="gradient-text">Birthday Vouchers</span> 🎟️
+            </h2>
+            <p class="text-center text-brand-purple/60 mb-4 reveal reveal-delay-1 font-hand text-xl">Each redeemable
+                once. No refunds. No excuses.</p>
+            <p class="text-center text-brand-purple/40 text-sm mb-12 reveal reveal-delay-1">Click to redeem</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="vouchers-grid">
+                <div class="voucher-card reveal" onclick="redeemVoucher(this)">
+                    <div class="relative z-10">
+                        <div class="text-3xl mb-3">🍔</div>
+                        <h3 class="text-lg font-bold text-brand-amber">One Free Treat</h3>
+                        <p class="text-brand-purple/60 text-sm mt-2">Redeemable for one food item of your choice.
+                            Budget: whatever I can afford (don't push it).</p>
+                        <p class="text-brand-purple/40 text-xs mt-3 font-mono">CODE: FEEDME-2026</p>
+                    </div>
+                </div>
+
+                <div class="voucher-card reveal reveal-delay-1" onclick="redeemVoucher(this)">
+                    <div class="relative z-10">
+                        <div class="text-3xl mb-3">🆘</div>
+                        <h3 class="text-lg font-bold text-brand-purple">Meme Emergency Support</h3>
+                        <p class="text-brand-purple/60 text-sm mt-2">I will send you memes within 5 minutes of your SOS.
+                            Quality not guaranteed.</p>
+                        <p class="text-brand-purple/40 text-xs mt-3 font-mono">CODE: MEMESOS-2026</p>
+                    </div>
+                </div>
+
+                <div class="voucher-card reveal reveal-delay-2" onclick="redeemVoucher(this)">
+                    <div class="relative z-10">
+                        <div class="text-3xl mb-3">🗣️</div>
+                        <h3 class="text-lg font-bold text-brand-blue">One Rant Session</h3>
+                        <p class="text-brand-purple/60 text-sm mt-2">Unlimited talking. Guaranteed fake listening. I
+                            will say "that's crazy" at least 4 times.</p>
+                        <p class="text-brand-purple/40 text-xs mt-3 font-mono">CODE: RANTTIME-2026</p>
+                    </div>
+                </div>
+
+                <div class="voucher-card reveal reveal-delay-3" onclick="redeemVoucher(this)">
+                    <div class="relative z-10">
+                        <div class="text-3xl mb-3">🎬</div>
+                        <h3 class="text-lg font-bold text-brand-pink">Movie/Gaming Night</h3>
+                        <p class="text-brand-purple/60 text-sm mt-2">I'll pretend to like whatever you pick. Even if
+                            it's that show you keep recommending.</p>
+                        <p class="text-brand-purple/40 text-xs mt-3 font-mono">CODE: HANGOUT-2026</p>
+                    </div>
+                </div>
+
+                <div class="voucher-card reveal reveal-delay-2" onclick="redeemVoucher(this)">
+                    <div class="relative z-10">
+                        <div class="text-3xl mb-3">⚖️</div>
+                        <h3 class="text-lg font-bold text-green-400">Defense Attorney</h3>
+                        <p class="text-brand-purple/60 text-sm mt-2">I will defend you in any argument. Even if you're
+                            wrong. Especially if you're wrong.</p>
+                        <p class="text-brand-purple/40 text-xs mt-3 font-mono">CODE: DEFENDME-2026</p>
+                    </div>
+                </div>
+
+                <div class="voucher-card reveal reveal-delay-3" onclick="redeemVoucher(this)">
+                    <div class="relative z-10">
+                        <div class="text-3xl mb-3">🚲</div>
+                        <h3 class="text-lg font-bold text-brand-amber">Long drive</h3>
+                        <p class="text-brand-purple/60 text-sm mt-2">Call me at any hour in holiday. lets go a long drive</p>
+                        <p class="text-brand-purple/40 text-xs mt-3 font-mono">CODE: 3AMCALL-2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="playlist" class="relative z-10 py-24 px-6">
+        <div class="max-w-md mx-auto">
+            <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                <span class="gradient-text">The Playlist</span> 🎵
+            </h2>
+            <p class="text-center text-brand-purple/60 mb-12 reveal reveal-delay-1 font-hand text-xl">Songs that are
+                technically "our thing"</p>
+
+            <div class="card p-6 reveal reveal-delay-2">
+                <div class="flex items-center gap-4 mb-6">
+                    <div id="album-art"
+                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-3xl flex-shrink-0 animate-pulse-glow">
+                        🎵
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p id="song-title" class="font-bold truncate">Tum hi Ho Bandhu</p>
+                        <p id="song-artist" class="text-brand-purple/60 text-sm truncate">Kavita Seth, Neeraj Shridhar, and Pritam Chakraborty</p>
+                    </div>
+                    <button id="play-btn" onclick="toggleMusic()"
+                        class="w-12 h-12 rounded-full bg-brand-purple flex items-center justify-center hover:bg-brand-purple/80 transition-colors flex-shrink-0">
+                        <i data-lucide="play" class="w-5 h-5" id="play-icon"></i>
+                    </button>
+                </div>
+
+                <div class="mb-2">
+                    <div class="progress-bar">
+                        <div id="music-progress" class="progress-fill bg-gradient-to-r from-brand-purple to-brand-blue"
+                            style="width:0%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-brand-purple/40 mt-1">
+                        <span id="music-time">0:00</span>
+                        <span id="music-duration">0:15</span>
+                    </div>
+                </div>
+
+                <div class="music-visualizer justify-center mt-4" id="visualizer">
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                    <div class="music-bar" style="height:8px"></div>
+                </div>
+
+                <div class="mt-6 space-y-1" id="playlist-songs">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="voice-notes" class="relative z-10 py-24 px-6">
+        <div class="max-w-md mx-auto">
+            <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                <span class="gradient-text">A Special Voice Note</span> 🎙️
+            </h2>
+            <p class="text-center text-brand-purple/60 mb-12 reveal reveal-delay-1 font-hand text-xl">
+                Press play to listen
+            </p>
+<!-- ----------------------------------------------------------------------------------------------------------- -->
+            <div class="card p-5 md:p-6 reveal reveal-delay-2 relative overflow-hidden">
+                <audio id="custom-voice-audio" src="audio/your-voice-note.mp3" preload="metadata"></audio>
+                <div class="flex items-center gap-3 md:gap-4 mb-4">
+                    <button onclick="toggleCustomVoiceNote()"
+                        class="w-12 h-12 rounded-full bg-brand-purple flex items-center justify-center hover:bg-brand-purple/80 transition-colors flex-shrink-0 shadow-[0_0_15px_rgba(167,139,250,0.3)] z-10"
+                        id="custom-vn-btn">
+                        <i data-lucide="play" class="w-5 h-5 text-brand-dark" id="custom-vn-icon"></i>
+                    </button>
+                    
+                    <div class="flex-1 flex items-end gap-[2px] md:gap-[3px] h-10 overflow-hidden cursor-pointer relative z-10" 
+                         id="custom-vn-wave" 
+                         onclick="seekCustomVoiceNote(event)">
+                        <div id="custom-vn-progress" class="absolute left-0 top-0 bottom-0 bg-brand-purple/20 pointer-events-none transition-all duration-100 border-r-2 border-brand-purple" style="width: 0%;"></div>
+                    </div>
+                    
+                    <span class="text-xs md:text-sm font-mono text-brand-purple/60 flex-shrink-0 w-10 text-right z-10" id="custom-vn-time">0:00</span>
+                </div>
+                
+                <div class="bg-brand-dark/40 rounded-lg p-4 border border-brand-border/50 mt-4 relative z-10">
+                    <p class="text-sm md:text-base text-brand-purple/80 font-hand leading-relaxed">
+                        "Hey, happy birthday! Just wanted to leave this here. Hope you have the best day..." 
+                        <br><span class="text-xs text-brand-purple/40 block mt-2">(Read along or just listen)</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interactive" class="relative z-10 py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+
+            <div class="mb-24">
+                <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                    <span class="gradient-text">Friendship Stats</span> 📊
+                </h2>
+                <p class="text-center text-brand-purple/60 mb-12 reveal reveal-delay-1 font-hand text-xl">Scientifically
+                    calculated (not really)</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6 reveal reveal-delay-2">
+                        <div>
+                            <div class="flex justify-between mb-2"><span class="text-sm font-bold">Chaos
+                                    Compatibility</span><span class="text-sm text-brand-amber">99%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-brand-amber" data-width="99"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span class="text-sm font-bold">Meme
+                                    Accuracy</span><span class="text-sm text-brand-purple">87%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-brand-purple" data-width="87"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span class="text-sm font-bold">Late Night
+                                    Availability</span><span class="text-sm text-brand-blue">100%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-brand-blue" data-width="100"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span class="text-sm font-bold">Emotional Damage
+                                    Dealt</span><span class="text-sm text-brand-pink">30%</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill bg-brand-pink" data-width="30"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-8 flex flex-col items-center justify-center text-center reveal reveal-delay-3">
+                        <p class="text-brand-purple/60 text-sm uppercase tracking-widest mb-4">Overall Friendship Score
+                        </p>
+                        <div class="text-7xl md:text-8xl font-bold font-display gradient-text glow-text"
+                            id="friendship-score">0</div>
+                        <p class="text-brand-purple/60 text-lg mt-2 font-hand">out of 100%</p>
+                        <p class="text-brand-amber mt-4 font-hand text-xl">"Basically soulmates but platonic"<br><span
+                                class="text-brand-purple/40 text-base">— everyone who knows us</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-24">
+                <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                    <span class="gradient-text">How Well Do You Know Me?</span> 🧠
+                </h2>
+                <p class="text-center text-brand-purple/60 mb-12 reveal reveal-delay-1 font-hand text-xl">No pressure
+                    (there's definitely pressure)</p>
+
+                <div class="max-w-lg mx-auto">
+                    <div id="quiz-container" class="reveal reveal-delay-2">
+                        <div id="quiz-question-num" class="text-sm text-brand-amber uppercase tracking-widest mb-2">
+                            Question 1 of 5</div>
+                        <h3 id="quiz-question" class="text-xl font-bold mb-6"></h3>
+                        <div id="quiz-options" class="space-y-3"></div>
+                        <div id="quiz-feedback" class="mt-4 text-sm hidden"></div>
+                        <button id="quiz-next" onclick="nextQuestion()"
+                            class="mt-6 px-6 py-3 bg-brand-purple rounded-xl font-bold hover:bg-brand-purple/80 transition-colors hidden">Next
+                            →</button>
+                    </div>
+                    <div id="quiz-result" class="card p-8 text-center hidden">
+                        <div class="text-6xl mb-4" id="result-emoji"></div>
+                        <h3 class="text-2xl font-bold mb-2" id="result-title"></h3>
+                        <p class="text-brand-purple/60 mb-6" id="result-desc"></p>
+                        <p class="text-3xl font-hand text-brand-amber" id="result-score"></p>
+                        <button onclick="resetQuiz()"
+                            class="mt-6 px-6 py-3 bg-brand-purple/20 border border-brand-purple rounded-xl font-bold hover:bg-brand-purple/30 transition-colors">Try
+                            Again</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="font-display text-5xl md:text-7xl text-center mb-4 reveal">
+                    <span class="gradient-text">Compliment Generator</span> 💬
+                </h2>
+                <p class="text-center text-brand-purple/60 mb-12 reveal reveal-delay-1 font-hand text-xl">Because you
+                    need to hear it (and I won't say it out loud)</p>
+
+                <div class="max-w-lg mx-auto reveal reveal-delay-2">
+                    <div class="card p-8 text-center min-h-[200px] flex flex-col items-center justify-center"
+                        id="compliment-card">
+                        <p class="text-xl font-hand leading-relaxed" id="compliment-text">Click the button for a
+                            carefully curated compliment</p>
+                    </div>
+                    <button onclick="generateCompliment()"
+                        class="mt-6 w-full py-4 bg-gradient-to-r from-brand-purple to-brand-blue rounded-xl font-bold text-lg hover:opacity-90 transition-opacity active:scale-[0.98]">
+                        Generate Compliment ✨
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="finale" class="relative z-10 py-32 px-6 text-center">
+        <div class="max-w-2xl mx-auto">
+            <div class="reveal">
+                <div class="text-6xl mb-8 animate-float">🎉</div>
+                <h2 class="font-display text-5xl md:text-7xl mb-6">
+                    <span class="shimmer-text">Happy Birthday, Beautiful Disaster</span>
+                </h2>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <p class="text-xl md:text-2xl text-brand-purple/80 font-hand leading-relaxed mb-4">
+                    Thanks for surviving another year with us.
+                </p>
+                <p class="text-lg text-brand-purple/60 font-hand mb-8">
+                    Here's to more chaos, more laughs, and more questionable decisions together.
+                </p>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <p class="text-4xl md:text-5xl font-display gradient-text glow-text mb-12">
+                    See you on the other side of 24 ✨
+                </p>
+            </div>
+            <div class="reveal reveal-delay-3">
+                <button onclick="launchFinaleConfetti()"
+                    class="px-8 py-4 bg-gradient-to-r from-brand-amber to-orange-500 text-brand-dark rounded-2xl font-extrabold text-lg hover:opacity-90 transition-all active:scale-95 animate-pulse-glow">
+                    🎉 Celebrate One More Time 🎉
+                </button>
+            </div>
+            <p class="text-brand-purple/30 text-sm mt-16 reveal reveal-delay-4 font-hand text-lg">made with love,
+                sarcasm, and too much free time</p>
+        </div>
+    </section>
+
+    <div id="lightbox-modal"
+        class="fixed inset-0 bg-[#0C0816]/95 z-[999999] hidden flex-col items-center justify-center p-4 backdrop-blur-md opacity-0 transition-opacity duration-300 select-none">
+        <button onclick="closeLightbox()"
+            class="absolute top-6 right-6 text-brand-purple hover:text-brand-amber transition-colors p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="max-w-2xl w-full text-center px-4">
+            <img id="lightbox-img" src="" alt="Zoomed Photo"
+                class="max-h-[65vh] md:max-h-[70vh] mx-auto rounded-lg shadow-[0_0_50px_rgba(167,139,250,0.25)] border border-brand-border object-contain">
+            <p id="lightbox-caption" class="font-display text-4xl text-brand-amber mt-6 glow-amber"></p>
+            <p id="lightbox-story" class="font-hand text-xl text-brand-purple/80 mt-3 max-w-md mx-auto leading-relaxed">
+            </p>
+        </div>
+    </div>
+
+<script>
+// ========== LOADER ==========
+window.addEventListener('load', () => {
+    const bar = document.getElementById('loader-bar');
+    bar.style.width = '100%';
+    setTimeout(() => {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(() => document.getElementById('loader').remove(), 800);
+    }, 800);
+});
+
+// ========== HERO TEXT SCRAMBLE ==========
+function scrambleText(element, finalText, duration = 1500) {
+    const chars = '✨🎉💖🎂💫🌸';
+    let iterations = 0;
+    const interval = setInterval(() => {
+        element.innerText = finalText
+            .split('')
+            .map((letter, index) => {
+                if (index < iterations) return finalText[index];
+                if (letter === ' ') return ' ';
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join('');
+        if (iterations >= finalText.length) clearInterval(interval);
+        iterations += 1 / (duration / 50 / finalText.length);
+    }, 50);
+}
+window.addEventListener('load', () => {
+    const heroText = document.getElementById('hero-text');
+    if (heroText) scrambleText(heroText, 'Happy Birthday');
+});
+
+// ========== CUSTOM CURSOR & HEART TRAIL ==========
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX - 10 + 'px';
+        cursor.style.top = e.clientY - 10 + 'px';
+    });
+    document.addEventListener('mousedown', (e) => {
+        cursor.style.transform = 'scale(0.8)';
+        const heart = document.createElement('div');
+        heart.className = 'heart-trail';
+        heart.textContent = ['✨','💖','🎀','💫','🌟'][Math.floor(Math.random()*5)];
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        heart.style.fontSize = (Math.random() * 10 + 12) + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+    });
+    document.addEventListener('mouseup', () => cursor.style.transform = 'scale(1)');
+    
+    function bindHoverEffects() {
+        document.querySelectorAll('button, .card, .voucher-card, .quiz-option, .polaroid, .envelope-wrapper').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+    }
+    bindHoverEffects();
+}
+
+// ========== 3D TILT ON CARDS ==========
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+});
+
+// ========== SECRET DECODER ==========
+document.querySelectorAll('.decode-text').forEach(el => {
+    const final = el.dataset.text;
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*';
+    el.addEventListener('mouseenter', () => {
+        let i = 0;
+        el.classList.add('revealed');
+        const interval = setInterval(() => {
+            if (i >= final.length) { clearInterval(interval); el.textContent = final; return; }
+            el.textContent = final.split('').map((c, idx) => 
+                idx < i ? c : chars[Math.floor(Math.random() * chars.length)]
+            ).join('');
+            i++;
+        }, 40);
+    });
+});
+
+// ========== PARTICLES ==========
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+    constructor() { this.reset(); this.y = Math.random() * canvas.height; }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + 10;
+        this.size = Math.random() * 2.5 + 0.5;
+        this.speedY = -(Math.random() * 0.5 + 0.15);
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.6 + 0.2;
+        this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+        this.twinkleOffset = Math.random() * Math.PI * 2;
+        const colors = ['#A78BFA','#60A5FA','#FBBF24','#F472B6','#FFFFFF'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+    update(t) {
+        this.y += this.speedY;
+        this.x += this.speedX + Math.sin(t * 0.001 + this.twinkleOffset) * 0.15;
+        this.currentOpacity = this.opacity * (0.5 + 0.5 * Math.sin(t * this.twinkleSpeed + this.twinkleOffset));
+        if (this.y < -10) this.reset();
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.currentOpacity;
+        ctx.fill();
+        if (this.size > 1.5) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = this.currentOpacity * 0.1;
+            ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+    }
+}
+
+for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+function animateParticles(t) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(t); p.draw(); });
+    requestAnimationFrame(animateParticles);
+}
+requestAnimationFrame(animateParticles);
+
+// ========== AGE COUNTER WITH COUNT-UP ==========
+const birthDate = new Date(2002, 5, 8, 0, 0, 0); // June 8, 2002
+function calculateAge() {
+    const now = new Date();
+
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = now.getMonth() - birthDate.getMonth();
+    let days = now.getDate() - birthDate.getDate();
+
+    if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    let hours = now.getHours() - birthDate.getHours();
+    let minutes = now.getMinutes() - birthDate.getMinutes();
+    let seconds = now.getSeconds() - birthDate.getSeconds();
+
+    if (seconds < 0) {
+        minutes--;
+        seconds += 60;
+    }
+    if (minutes < 0) {
+        hours--;
+        minutes += 60;
+    }
+    if (hours < 0) {
+        days--;
+        hours += 24;
+        if (days < 0) {
+            months--;
+            const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+            days += prevMonth.getDate();
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+        }
+    }
+
+    return { years, months, days, hours, minutes, seconds };
+}
+
+function animateAgeCounter() {
+    const targets = calculateAge();
+    const startTime = performance.now();
+    const durations = {
+        years: 1200,
+        months: 1600,
+        days: 2000,
+        hours: 2400,
+        minutes: 2800,
+        seconds: 3200
+    };
+
+    const elements = {
+        years: document.getElementById('cd-years'),
+        months: document.getElementById('cd-months'),
+        days: document.getElementById('cd-days'),
+        hours: document.getElementById('cd-hours'),
+        minutes: document.getElementById('cd-mins'),
+        seconds: document.getElementById('cd-secs')
+    };
+    Object.values(elements).forEach(el => {
+        if (el) el.classList.add('tabular-nums');
+    });
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        let allDone = true;
+
+        for (const [unit, targetValue] of Object.entries(targets)) {
+            const el = elements[unit];
+            if (!el) continue;
+
+            const duration = durations[unit];
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 4); 
+
+            if (progress < 1) {
+                el.textContent = String(Math.floor(targetValue * ease)).padStart(2, '0');
+                allDone = false;
+            } else {
+                const finalString = String(targetValue).padStart(2, '0');
+                if (el.textContent !== finalString) {
+                    el.textContent = finalString;
+                    el.classList.add('pop-effect');
+                    setTimeout(() => el.classList.remove('pop-effect'), 500);
+                }
+            }
+        }
+
+        if (!allDone) {
+            requestAnimationFrame(update);
+        } else {
+            startRealTimeUpdates();
+        }
+    }
+    
+    requestAnimationFrame(update);
+}
+
+function startRealTimeUpdates() {
+    setInterval(() => {
+        const age = calculateAge();
+        const elYears = document.getElementById('cd-years');
+        if (elYears) {
+            elYears.textContent = String(age.years).padStart(2, '0');
+            document.getElementById('cd-months').textContent = String(age.months).padStart(2, '0');
+            document.getElementById('cd-days').textContent = String(age.days).padStart(2, '0');
+            document.getElementById('cd-hours').textContent = String(age.hours).padStart(2, '0');
+            document.getElementById('cd-mins').textContent = String(age.minutes).padStart(2, '0');
+            document.getElementById('cd-secs').textContent = String(age.seconds).padStart(2, '0');
+        }
+    }, 1000);
+}
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        animateAgeCounter(2500); 
+    }, 800); 
+});
+
+// ========== SCROLL REVEAL ==========
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            entry.target.querySelectorAll('.progress-fill[data-width]').forEach(bar => {
+                setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 300);
+            });
+            if (entry.target.querySelector('#friendship-score')) {
+                animateCounter('friendship-score', 0, 80.0, 2000);
+            }
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+function animateCounter(id, start, end, duration) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const startTime = performance.now();
+    function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (start + (end - start) * eased).toFixed(1) + '%';
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+// ========== SCROLL NAV + TOP BUTTON ==========
+const sections = ['hero','timeline','iconic','gallery','awards','cake','secret','letter','vouchers','playlist','voice-notes','interactive','finale'];
+const sideNav = document.getElementById('side-nav');
+const scrollTopBtn = document.getElementById('scroll-top');
+
+sections.forEach((id, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot';
+    dot.title = id.replace('-',' ');
+    dot.onclick = () => document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    sideNav.appendChild(dot);
+});
+
+const dots = sideNav.querySelectorAll('.nav-dot');
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const idx = sections.indexOf(entry.target.id);
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+    });
+}, { threshold: 0.3 });
+
+sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+});
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    sideNav.style.opacity = scrollY > 400 ? '1' : '0';
+    sideNav.style.pointerEvents = scrollY > 400 ? 'auto' : 'none';
+    scrollTopBtn.style.opacity = scrollY > 600 ? '1' : '0';
+    scrollTopBtn.style.transform = scrollY > 600 ? 'translateY(0)' : 'translateY(1rem)';
+    scrollTopBtn.style.pointerEvents = scrollY > 600 ? 'auto' : 'none';
+});
+
+// ========== GALLERY LIGHTBOX FUNCTIONS ==========
+function openLightbox(element) {
+    const modal = document.getElementById('lightbox-modal');
+    const img = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+    const story = document.getElementById('lightbox-story');
+    
+    const sourceImg = element.querySelector('img');
+    const sourceCaption = element.querySelector('.polaroid-caption');
+    const fallbackStory = "Words fail to fully capture the sheer logic-defying context behind this specific frame.";
+
+    img.src = sourceImg.src;
+    caption.textContent = sourceCaption.textContent;
+    story.textContent = element.dataset.story || fallbackStory;
+
+    modal.classList.remove('hidden');
+    setTimeout(() => modal.classList.add('opacity-100'), 15);
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightbox-modal');
+    modal.classList.remove('opacity-100');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+});
+
+// ========== CAKE BLOWING ==========
+let candlesBlown = false;
+function blowCandles() {
+    if (candlesBlown) return;
+    candlesBlown = true;
+
+    // Trigger exact same global celebration audio instance
+    playCelebrationTrack();
+
+    for (let i = 1; i <= 4; i++) {
+        const flame = document.getElementById('flame-' + i);
+        const candle = document.getElementById('candle-' + i);
+        setTimeout(() => {
+            flame.classList.add('out');
+            for (let j = 0; j < 3; j++) {
+                const smoke = document.createElement('div');
+                smoke.className = 'smoke-puff';
+                smoke.style.left = (candle.offsetLeft + 3 + (Math.random() - 0.5) * 8) + 'px';
+                smoke.style.top = (candle.offsetTop - 10) + 'px';
+                smoke.style.animationDelay = (j * 0.15) + 's';
+                document.querySelector('.cake-container').appendChild(smoke);
+                setTimeout(() => smoke.remove(), 1200);
+            }
+        }, (i - 1) * 200);
+    }
+
+    setTimeout(() => {
+        const msg = document.getElementById('cake-message');
+        const messages = ['🎉 You did it!', '✨ Wish granted (maybe)', '🎂 Cake: 0, You: 1', '🔥 Candles destroyed. Nice.'];
+        msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+        msg.style.opacity = '1';
+        launchConfetti(40);
+    }, 1000);
+}
+
+const cakeContainer = document.querySelector('.cake-container');
+cakeContainer.addEventListener('mousemove', (e) => {
+    const rect = cakeContainer.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    document.querySelectorAll('.flame').forEach((f) => {
+        if (!f.classList.contains('out')) {
+            f.style.transform = `translateX(calc(-50% + ${x * 15}px)) skewX(${x * 20}deg)`;
+        }
+    });
+});
+
+// ========== ENVELOPE ==========
+let envelopeOpened = false;
+function openEnvelope() {
+    if (envelopeOpened) return;
+    envelopeOpened = true;
+    document.getElementById('envelope-box').classList.add('opened');
+}
+
+// ========== VOUCHERS ==========
+function redeemVoucher(el) {
+    if (el.classList.contains('redeemed')) {
+        showToast('Already redeemed! No cheating 🫠');
+        return;
+    }
+    el.classList.add('redeemed');
+    showToast('🎟️ Voucher redeemed! (I regret this already)');
+    launchConfetti(15);
+}
+
+// ========== TOAST ==========
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ========== CONFETTI ==========
+function launchConfetti(count = 50) {
+    const colors = ['#A78BFA','#60A5FA','#FBBF24','#F472B6','#22C55E','#F97316','#FFFFFF'];
+    for (let i = 0; i < count; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.top = '-10px';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.width = (Math.random() * 8 + 5) + 'px';
+        piece.style.height = (Math.random() * 8 + 5) + 'px';
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        piece.style.animationDelay = (Math.random() * 0.5) + 's';
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 4500);
+    }
+}
+
+function launchFinaleConfetti() {
+    launchConfetti(100);
+    setTimeout(() => launchConfetti(60), 500);
+    setTimeout(() => launchConfetti(40), 1000);
+    
+    // Trigger exact same global celebration audio instance
+    playCelebrationTrack();
+}
+
+// ========== AUDIO ENGINE ==========
+let isPlaying = false;
+const audioPlayer = new Audio(); 
+let playingCelebration = false;
+let currentPlaylistIndex = 0;
+
+// The track triggered by the Cake and the Finale button
+const celebrationTrack = {
+    title: "Happy Birthday Track ✨",
+    artist: "Birthday Special",
+    duration: "--:--",
+    path: "audio/hb.mp3"
+};
+
+// The tracks exclusively for the "Playlist" section
+const playlistSongs = [
+    { 
+        title: "Tumhi Ho Bandhu", 
+        artist: "Kavita Seth & Neeraj Shridhar", 
+        duration: "4:45", 
+        path: "audio/cocktail.mp3" 
+    },
+    { 
+        title: "Ratt Bhar", 
+        artist: "Arijit Singh & Shreya Ghoshal", 
+        duration: "5:35", 
+        path: "audio/Heropanti.mp3" 
+    }
+];
+
+function updatePlayerUI(song) {
+    document.getElementById('song-title').textContent = song.title;
+    document.getElementById('song-artist').textContent = song.artist;
+    document.getElementById('music-duration').textContent = song.duration;
+}
+
+function renderPlaylist() {
+    const container = document.getElementById("playlist-songs");
+    if (!container) return;
+    container.innerHTML = ""; 
+    
+    playlistSongs.forEach((song, index) => {
+        // If the celebration track is playing, don't highlight any playlist songs.
+        const isActive = !playingCelebration && currentPlaylistIndex === index;
+        const styles = isActive 
+            ? "bg-brand-dark/50 border border-brand-purple/30" 
+            : "hover:bg-brand-dark/50";
+
+        container.innerHTML += `
+            <div class="flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors text-brand-amber ${styles}"
+                 onclick="playPlaylistTrack(${index})">
+                <span class="text-xs w-5 text-center">${index + 1}</span>
+                <span class="flex-1 text-sm truncate">${song.title}</span>
+                <span class="text-xs text-brand-purple/40">${song.duration}</span>
+            </div>
+        `;
+    });
+}
+
+// Initial UI load
+updatePlayerUI(playlistSongs[0]); 
+renderPlaylist();
+
+// Event listeners for the single Audio Player
+audioPlayer.addEventListener('ended', () => {
+    isPlaying = false;
+    document.getElementById('play-icon').setAttribute('data-lucide', 'play');
+    lucide.createIcons();
+    stopVisualizer();
+});
+
+audioPlayer.addEventListener('timeupdate', () => {
+    if (!audioPlayer.duration) return;
+    const elapsed = audioPlayer.currentTime;
+    const duration = audioPlayer.duration;
+    const pct = (elapsed / duration) * 100;
+    
+    document.getElementById('music-progress').style.width = pct + '%';
+    const secs = Math.floor(elapsed);
+    document.getElementById('music-time').textContent = Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0');
+});
+
+// Called when Cake or Finale is clicked
+function playCelebrationTrack() {
+    playingCelebration = true;
+    audioPlayer.src = celebrationTrack.path;
+    updatePlayerUI(celebrationTrack);
+    renderPlaylist(); // Clears any selection highlights from the playlist
+    
+    audioPlayer.play().then(() => {
+        isPlaying = true;
+        document.getElementById('play-icon').setAttribute('data-lucide', 'pause');
+        lucide.createIcons();
+        startVisualizer();
+    }).catch(err => console.log(err));
+}
+
+// Called when a song inside the Playlist section is clicked
+function playPlaylistTrack(index) {
+    playingCelebration = false;
+    currentPlaylistIndex = index;
+    const song = playlistSongs[index];
+    
+    audioPlayer.src = song.path;
+    updatePlayerUI(song);
+    renderPlaylist(); // Highlights the active playlist song
+    
+    audioPlayer.play().then(() => {
+        isPlaying = true;
+        document.getElementById('play-icon').setAttribute('data-lucide', 'pause');
+        lucide.createIcons();
+        startVisualizer();
+    }).catch(err => console.log(err));
+}
+
+// Toggles pause/play for whatever is currently loaded
+function toggleMusic() {
+    if (isPlaying) {
+        stopMusic();
+    } else {
+        if (!audioPlayer.src || audioPlayer.src.includes("null") || audioPlayer.src === window.location.href) {
+            // If nothing is playing yet, default to the first playlist song
+            playPlaylistTrack(currentPlaylistIndex);
+        } else {
+            audioPlayer.play();
+            isPlaying = true;
+            document.getElementById('play-icon').setAttribute('data-lucide', 'pause');
+            lucide.createIcons();
+            startVisualizer();
+        }
+    }
+}
+
+function stopMusic() {
+    isPlaying = false;
+    audioPlayer.pause();
+    document.getElementById('play-icon').setAttribute('data-lucide', 'play');
+    lucide.createIcons();
+    stopVisualizer();
+}
+
+let visInterval = null;
+function startVisualizer() {
+    stopVisualizer();
+    const bars = document.querySelectorAll('#visualizer .music-bar');
+    visInterval = setInterval(() => {
+        bars.forEach(bar => {
+            const height = isPlaying ? Math.floor(Math.random() * 24 + 6) : 8;
+            bar.style.height = height + 'px';
+        });
+    }, 150);
+}
+
+function stopVisualizer() {
+    clearInterval(visInterval);
+    const bars = document.querySelectorAll('#visualizer .music-bar');
+    bars.forEach(bar => bar.style.height = '8px');
+}
+
+// ========== REAL CUSTOM VOICE NOTE ==========
+const customAudio = document.getElementById('custom-voice-audio');
+const customIcon = document.getElementById('custom-vn-icon');
+const customWave = document.getElementById('custom-vn-wave');
+const customProgress = document.getElementById('custom-vn-progress');
+const customTime = document.getElementById('custom-vn-time');
+
+// 1. Generate the visualizer bars
+for (let i = 0; i < 40; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'waveform-bar z-10'; // Ensures it sits above the progress highlight
+    bar.style.setProperty('--h', (Math.random() * 20 + 8) + 'px');
+    bar.style.animationDelay = (Math.random() * 0.5) + 's';
+    customWave.appendChild(bar);
+}
+
+// 2. Handle Play / Pause
+function toggleCustomVoiceNote() {
+    if (customAudio.paused) {
+        // Optional: Pause the main background music if it's playing so they don't overlap
+        if (typeof audioPlayer !== 'undefined' && !audioPlayer.paused) {
+            stopMusic(); 
+        }
+        
+        customAudio.play();
+        customIcon.setAttribute('data-lucide', 'pause');
+        lucide.createIcons();
+        document.querySelectorAll('#custom-vn-wave .waveform-bar').forEach(b => b.classList.add('playing'));
+    } else {
+        customAudio.pause();
+        customIcon.setAttribute('data-lucide', 'play');
+        lucide.createIcons();
+        document.querySelectorAll('#custom-vn-wave .waveform-bar').forEach(b => b.classList.remove('playing'));
+    }
+}
+
+// 3. Update time and progress bar highlight as it plays
+customAudio.addEventListener('timeupdate', () => {
+    const pct = (customAudio.currentTime / customAudio.duration) * 100;
+    customProgress.style.width = (pct || 0) + '%';
+    
+    const secs = Math.floor(customAudio.currentTime);
+    customTime.textContent = Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0');
+});
+
+// 4. Reset when finished
+customAudio.addEventListener('ended', () => {
+    customIcon.setAttribute('data-lucide', 'play');
+    lucide.createIcons();
+    document.querySelectorAll('#custom-vn-wave .waveform-bar').forEach(b => b.classList.remove('playing'));
+    customProgress.style.width = '0%';
+    customTime.textContent = '0:00';
+});
+
+// 5. Allow seeking (clicking on the waveform to skip around)
+function seekCustomVoiceNote(e) {
+    if (!customAudio.duration) return; // Wait until audio is loaded
+    const rect = customWave.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const pct = Math.max(0, Math.min(1, clickX / rect.width)); // Keep between 0 and 1
+    
+    customAudio.currentTime = pct * customAudio.duration;
+}
+
+// ========== QUIZ ==========
+const quizData = [
+    {
+        q: "What's my go-to late night snack?",
+        options: ["Ice cream (basic)", "Instant noodles (iconic)", "Whatever I find in the fridge at 2am", "I don't eat, I just scroll"],
+        correct: 2
+    },
+    {
+        q: "What's our most used emoji in chats?",
+        options: ["😂 (normie)", "💀 (dramatic)", " ✅ (accurate)", "All of them, we have a problem"],
+        correct: 0
+    },
+    {
+        q: "When we hang out, we usually end up...",
+        options: ["Getting food", "Talking for hours about nothing", "A warm handshake", "All of the above, every single time"],
+        correct: 2
+    },
+    {
+        q: "My most iconic trait according to you?",
+        options: ["Overthinking everything", "Being chronically late", "Think everything logically", "All of the above, at the same time"],
+        correct: 2
+    }
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+
+function renderQuestion() {
+    const q = quizData[quizIndex];
+    document.getElementById('quiz-question-num').textContent = `Question ${quizIndex + 1} of ${quizData.length}`;
+    document.getElementById('quiz-question').textContent = q.q;
+    document.getElementById('quiz-feedback').classList.add('hidden');
+    document.getElementById('quiz-next').classList.add('hidden');
+
+    const optionsEl = document.getElementById('quiz-options');
+    optionsEl.innerHTML = '';
+    q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        btn.onclick = () => selectAnswer(i);
+        optionsEl.appendChild(btn);
+    });
+}
+
+function selectAnswer(index) {
+    const q = quizData[quizIndex];
+    const options = document.querySelectorAll('.quiz-option');
+    options.forEach(o => { o.onclick = null; o.style.cursor = 'default'; });
+
+    if (index === q.correct) {
+        options[index].classList.add('correct');
+        quizScore++;
+        document.getElementById('quiz-feedback').textContent = '✅ Correct! You really do know me (scary)';
+        document.getElementById('quiz-feedback').className = 'mt-4 text-sm text-green-400';
+    } else {
+        options[index].classList.add('wrong');
+        options[q.correct].classList.add('correct');
+        document.getElementById('quiz-feedback').textContent = '❌ Wrong! The answer was obviously the dramatic one';
+        document.getElementById('quiz-feedback').className = 'mt-4 text-sm text-red-400';
+    }
+    document.getElementById('quiz-feedback').classList.remove('hidden');
+    document.getElementById('quiz-next').classList.remove('hidden');
+    document.getElementById('quiz-next').textContent = quizIndex < quizData.length - 1 ? 'Next →' : 'See Results 🎉';
+}
+
+function nextQuestion() {
+    quizIndex++;
+    if (quizIndex >= quizData.length) {
+        showResults();
+    } else {
+        renderQuestion();
+    }
+}
+
+function showResults() {
+    document.getElementById('quiz-container').classList.add('hidden');
+    const result = document.getElementById('quiz-result');
+    result.classList.remove('hidden');
+    result.classList.add('animate-bounce-in');
+
+    const score = quizScore;
+    document.getElementById('result-score').textContent = `${score}/${quizData.length}`;
+
+    if (score === 5) {
+        document.getElementById('result-emoji').textContent = '🤯';
+        document.getElementById('result-title').textContent = 'You Literally Know Me Too Well';
+        document.getElementById('result-desc').textContent = "This is creepy. Have you been stalking me? (Kidding. Kinda.)";
+    } else if (score >= 3) {
+        document.getElementById('result-emoji').textContent = '😎';
+        document.getElementById('result-title').textContent = 'Solid Performance';
+        document.getElementById('result-desc').textContent = "You've been paying attention. I see you.";
+    } else if (score >= 1) {
+        document.getElementById('result-emoji').textContent = '🫠';
+        document.getElementById('result-title').textContent = 'Are You Sure We\'re Friends?';
+        document.getElementById('result-desc').textContent = "Concerning results. We need to talk.";
+    } else {
+        document.getElementById('result-emoji').textContent = '💀';
+        document.getElementById('result-title').textContent = 'WHO ARE YOU?!';
+        document.getElementById('result-desc').textContent = "Zero points. I'm questioning our entire friendship.";
+    }
+}
+
+function resetQuiz() {
+    quizIndex = 0;
+    quizScore = 0;
+    document.getElementById('quiz-container').classList.remove('hidden');
+    document.getElementById('quiz-result').classList.add('hidden');
+    renderQuestion();
+}
+
+renderQuestion();
+
+// ========== COMPLIMENT GENERATOR ==========
+const compliments = [
+    "You're proof that annoying people can still be loved.",
+    "I'd fight anyone who talks trash about you. After I talk trash about you first, obviously.",
+    "You make my life 30% more chaotic and 100% more worth living.",
+    "If you were a stock, I'd invest. High risk, high reward.",
+    "You're like a human emoji — you match every mood perfectly.",
+    "I tolerate you more than most people, and that's saying a lot.",
+    "You're the main character but in a comedy, not a drama.",
+    "On a scale of 1 to 10, you're a solid 'why are you like this'",
+    "You're the person I'd call at 3am. Which is both a compliment and a warning.",
+    "If we were chips, we'd be the last two in the bag. Because we're the best ones.",
+    "You're not just a friend, you're a whole experience.",
+    "I didn't choose the chaotic friendship life. The chaotic friendship life chose us."
+];
+
+let lastCompliment = -1;
+function generateCompliment() {
+    let idx;
+    do { idx = Math.floor(Math.random() * compliments.length); } while (idx === lastCompliment);
+    lastCompliment = idx;
+
+    const card = document.getElementById('compliment-card');
+    const text = document.getElementById('compliment-text');
+    card.style.transform = 'scale(0.95)';
+    card.style.opacity = '0.5';
+
+    setTimeout(() => {
+        card.style.transform = 'scale(1)';
+        card.style.opacity = '1';
+        card.style.transition = 'all 0.4s cubic-bezier(0.16,1,0.3,1)';
+        text.textContent = compliments[idx];
+    }, 200);
+}
+
+// ========== INIT LUCIDE ICONS ==========
+lucide.createIcons();
+
+</script>
+</body>
+</html>
