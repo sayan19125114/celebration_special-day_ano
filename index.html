@@ -1524,25 +1524,35 @@ for (let i = 0; i < 40; i++) {
 
 // 2. Handle Play / Pause
 function toggleCustomVoiceNote() {
+    const btn = document.getElementById('custom-vn-btn'); 
+    
     if (customAudio.paused) {
-        // Optional: Pause the main background music if it's playing so they don't overlap
         if (typeof audioPlayer !== 'undefined' && !audioPlayer.paused) {
             stopMusic(); 
         }
         
         customAudio.play();
-        customIcon.setAttribute('data-lucide', 'pause');
+        btn.innerHTML = '<i data-lucide="pause" class="w-5 h-5 text-brand-dark"></i>';
         lucide.createIcons();
+        
         document.querySelectorAll('#custom-vn-wave .waveform-bar').forEach(b => b.classList.add('playing'));
     } else {
         customAudio.pause();
-        customIcon.setAttribute('data-lucide', 'play');
+        btn.innerHTML = '<i data-lucide="play" class="w-5 h-5 text-brand-dark"></i>';
         lucide.createIcons();
+        
         document.querySelectorAll('#custom-vn-wave .waveform-bar').forEach(b => b.classList.remove('playing'));
     }
 }
-
-// 3. Update time and progress bar highlight as it plays
+customAudio.addEventListener('ended', () => {
+    const btn = document.getElementById('custom-vn-btn');
+    btn.innerHTML = '<i data-lucide="play" class="w-5 h-5 text-brand-dark"></i>';
+    lucide.createIcons();
+    
+    document.querySelectorAll('#custom-vn-wave .waveform-bar').forEach(b => b.classList.remove('playing'));
+    customProgress.style.width = '0%';
+    customTime.textContent = '0:00';
+});
 customAudio.addEventListener('timeupdate', () => {
     const pct = (customAudio.currentTime / customAudio.duration) * 100;
     customProgress.style.width = (pct || 0) + '%';
@@ -1550,8 +1560,6 @@ customAudio.addEventListener('timeupdate', () => {
     const secs = Math.floor(customAudio.currentTime);
     customTime.textContent = Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0');
 });
-
-// 4. Reset when finished
 customAudio.addEventListener('ended', () => {
     customIcon.setAttribute('data-lucide', 'play');
     lucide.createIcons();
@@ -1559,13 +1567,11 @@ customAudio.addEventListener('ended', () => {
     customProgress.style.width = '0%';
     customTime.textContent = '0:00';
 });
-
-// 5. Allow seeking (clicking on the waveform to skip around)
 function seekCustomVoiceNote(e) {
-    if (!customAudio.duration) return; // Wait until audio is loaded
+    if (!customAudio.duration) return; 
     const rect = customWave.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
-    const pct = Math.max(0, Math.min(1, clickX / rect.width)); // Keep between 0 and 1
+    const pct = Math.max(0, Math.min(1, clickX / rect.width)); 
     
     customAudio.currentTime = pct * customAudio.duration;
 }
